@@ -1,0 +1,11 @@
+class ModuleConstants:
+    HIVE_WAREHOUSE_LOCATION = "app.env.hive.warehouselocation"
+    HIVE_APP_DATABASE = "app.hive.database"
+    HIVE_APP_TABLE = "app.hive.table"
+    APP_RESULTS_DB_PREFIX = "app.metrics.db"
+    FILE_DOWNLOAD_TIMEOUT = "app.file.download.timeoutInMS"
+    FILE_DOWNLOAD_LOCATION = "app.file.download.location"
+    HADOOP_FILE_COPY_PATH = "app.hdfs.copy.path"
+    QUERIES = "app.queries.statements"
+    URL = "url"
+    RESULT_TABLES = "app.queries.tables"
