@@ -14,7 +14,7 @@ from batch_process.constants.module_constants import ModuleConstants
 # download file to local path and then push to hdfs.
 local_path = config()['FILE'][ModuleConstants.FILE_DOWNLOAD_LOCATION]
 download_data(argv[2], local_path)
-hdfs_file_path = config()['FILE'][ModuleConstants.HADOOP_FILE_COPY_PATH] + 'data_' +\
+hdfs_file_path = config()['FILE'][ModuleConstants.HADOOP_FILE_COPY_PATH] + 'data_' + \
                  str(int(round(time.time() * 1000))) + '.csv'
 print(hdfs_file_path)
 put_file_in_hdfs(local_path, hdfs_file_path)
@@ -37,7 +37,6 @@ batch_data_frame.write.mode("overwrite").saveAsTable(config()['HIVE'][ModuleCons
 # get records count and show
 query = 'select count(*) from ' + config()['HIVE'][ModuleConstants.HIVE_APP_TABLE]
 SparkUtil.execute_show_query(query)
-
 
 # In[44]:
 
