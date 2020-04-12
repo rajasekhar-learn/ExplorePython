@@ -22,4 +22,3 @@ spark-submit batch_process\analyser.py 1 https://chronicdata.cdc.gov/views/735e-
 local run:
 
 ![Local Run ](/pyappLocalRun.JPG)
-Format: ![Alt Text](url)

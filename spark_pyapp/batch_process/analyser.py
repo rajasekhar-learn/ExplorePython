@@ -5,18 +5,17 @@
 
 from sys import argv
 
-from batch_process.helpers.sparkutil import SparkUtil
 from batch_process.processimpls.surveyprocess import run_batch_process
 
 try:
-    if int(argv[1]) > 0:
-        run_batch_process(argv[2])
+    if len(argv) == 3:
+        if int(argv[1]) is 1:
+            run_batch_process(argv[2])
     else:
-        print('invalid processId !!')
+        print('expecting processId and url to start process !!')
 except ValueError:
-    print('invalid value passed to child process! ')
-except RuntimeError as err:
-    print('error occurred !!, {0 }'.format(err))
+    print('invalid processId !, processId should be number.')
+except Exception as err:
+    print(err)
 
-    # stopping spark session
-    SparkUtil.spark_session().stop()
+

@@ -20,7 +20,10 @@ def run_batch_process(filelocation):
                          str(int(round(time.time() * 1000))) + '.csv'
         print(hdfs_file_path)
         put_file_in_hdfs(local_path, hdfs_file_path)
+    except:
+        raise Exception('unable to put data in hdfs!!')
 
+    try:
         batch_data_frame = SparkUtil.load_data("com.databricks.spark.csv", hdfs_file_path)
         # In[55]:
         # trimming column High_Confidence_Limit and invalid column name Age(months) to Age
@@ -48,7 +51,8 @@ def run_batch_process(filelocation):
         tabales = config()['QUERIES'][ModuleConstants.RESULT_TABLES].split(',')
         SparkUtil.execute_quey_store_results(queries, tabales)
 
-    except ValueError:
-        print('invalid value received !!')
-    except RuntimeError as err:
-        print('unknown error occurred {0}'.format(err))
+    except:
+        print('error occurred during batch process!!')
+    finally:
+        # stopping spark session
+        SparkUtil.spark_session().stop()
